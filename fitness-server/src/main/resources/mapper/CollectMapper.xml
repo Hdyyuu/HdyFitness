@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hdy.dao.CollectMapper" >
+
+  <insert id="addCollect" parameterType="com.example.hdy.domain.Collect" keyProperty="id" useGeneratedKeys="true" >
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="userID != null" >
+        userID,
+      </if>
+
+      <if test="videoID != null" >
+        videoID
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+      <if test="userID != null" >
+        #{userID,jdbcType=INTEGER},
+      </if>
+
+      <if test="videoID != null" >
+        #{videoID,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteCollect">
+    delete from collection where userID=#{userID} and videoID=#{videoID}
+  </delete>
+  <select id="existVideoID" resultType="java.lang.Integer">
+    select count(*) from collection where userID = #{userID, jdbcType=INTEGER} and videoID = #{videoID, jdbcType=INTEGER} ;
+  </select>
+  <select id="countCollect" resultType="java.lang.Integer">
+    SELECT COUNT(videoID) FROM collection where videoID=#{videoID}
+  </select>
+  <select id="getCollectOfUser" resultType="com.example.hdy.domain.Collect">
+    select * from collection where userID = #{userID, jdbcType=INTEGER}
+  </select>
+</mapper>

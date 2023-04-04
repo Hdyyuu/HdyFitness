@@ -1,0 +1,31 @@
+@import "var.scss";
+@import "global.scss";
+
+.content {
+  background-color: $color-white;
+  border-radius: $border-radius-songlist;
+  padding: 20px 40px;
+  min-width: 700px;
+
+  .title {
+    text-align: center;
+  }
+}
+
+.item{
+ float: left;
+  margin: 5px;
+  p{
+    float: right;
+  }
+}
+
+.icon {
+  @include icon(1.3em, $color-blue-active);
+  vertical-align: -0.3em;
+  right: 5px;
+}
+
+.comment{
+  margin-top: 50px;
+}
